@@ -7,25 +7,24 @@ public class Conta {
 	
 	public void deposita(double valor){
 		this.saldo += valor;
-		System.out.println("Deposita: '" + valor + 
-				"' na conta numero: '" + numero + "'");
+		System.out.println("Deposita: " + valor);
 	}
-	/*
-	public void saca(double valor) {
-		if(this.saldo >= valor) {
-			this.saldo -= valor;
-			System.out.println("Valor sacado: " + valor);			
-		}else {
-			System.out.println("Saldo da conta insuficiente para valor da operação");
-		}
-	}
-	*/
 	
 	public boolean saca(double valor) {
 		if(this.saldo>=valor) {
 			this.saldo -= valor;
 			return true;
 		}else {
+			System.out.println("Saldo insuficiênte para sacar");
+			return false;
+		}
+	}
+	public boolean transfere(double valor, Conta destino) {
+		if(this.saldo>=valor) {
+			this.saca(valor);
+			destino.deposita(valor);
+			return true;
+		} else {
 			return false;
 		}
 	}
